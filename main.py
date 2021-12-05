@@ -1,8 +1,12 @@
 import json
+
+import pyttsx3
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 import sqlite3 as db
 import random as rd
+import text
+import speech
 
 
 ateambot = ChatBot(name='Sabot',
@@ -70,54 +74,26 @@ def update_statement_id():
 
 
 def program_start():
-    text = True
+    test = True
     positive_checker: bool = False
     train_data()
     json_file_reader()
-    name = input('What is your name?')
     print('SUIBOT: Welcome to southampton solent university interactive bot')
-    response = input('''which of the following ways would you rather communicate with me
-    [1]Text
-    [2]Voice
-    [0]Exit
-    Answer: ''')
+    activity_string = '''which of the following ways would you rather communicate with me
+       [1]Text
+       [2]Voice
+       [0]Exit
+       Answer: '''
+    response = input(activity_string)
     if response == '1':
-       text_function(name)
+        text.text_func(ateambot)
     elif response == '2':
-        text = False
+        speech.speech_function(ateambot)
     elif response == '0':
         print('Thank you for stopping by exiting now')
         exit(0)
     else:
         print('invalid selection, text has been automatically chosen for you')
-    name = input('hello, what is your name?')
-    while True:
-        intent = input(name+' how can i help you?')
-        if intent.__contains__('exit'):
-            print('thanks for stopping by')
-            break
-        else:
-            ateambot.get_response(intent)
-            positive_checker_string = input('was that helpful?:')
-            if positive_checker_string.__contains__('yes') or positive_checker_string.__contains__('yeah'):
-                ateambot.learn_response()
-            else:
-                positive_checker = False
-
-
-def text_function(name):
-    while True:
-        question = input(f'SUIBOT: hello {name} how can i help you?')
-        print(f'suibot: {ateambot.get_response(question)}')
-        feedback = input('Did that help?')
-        if feedback == 'Yes':
-            break
-        else:
-            continue
-
-
-def voice_function():
-    pass
 
 
 program_start()
