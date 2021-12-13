@@ -8,9 +8,12 @@ def text_func(chatbot):
             print('thanks for stopping by')
             break
         else:
-            chatbot.get_response(intent)
+            print(chatbot.get_response(intent))
             positive_checker_string = input('was that helpful?:')
             if positive_checker_string.__contains__('yes') or positive_checker_string.__contains__('yeah'):
                 chatbot.learn_response()
             else:
                 continue
+
+
+
