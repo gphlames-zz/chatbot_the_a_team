@@ -25,12 +25,13 @@ def speech_function(chatbot):
             intent = r.recognize_google(intent_sound)
             speaker(chatbot.get_response(intent))
             speaker('was that helpful?')
-            response = listener(source)
-            if yes_checker(response):
+            response = r.listen(source)
+            response_text = str(r.recognize_google(response)).lower()
+            if yes_checker(response_text):
                 speaker('thank you for helping my learning process talk later')
-            elif response.__contains__('exit') or response.__contains__('quit'):
+            elif response_text.__contains__('exit') or response_text.__contains__('quit'):
                 break
-            elif response.__contains__('no') or response.__contains__('not really'):
+            elif response_text.__contains__('no') or response_text.__contains__('not really'):
                 speaker('you can help with my learning process, please reply with a yes if you wish to help')
                 willingness = r.listen(source)
                 willingness_text = str(r.recognize_google(willingness)).lower()
