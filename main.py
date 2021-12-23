@@ -7,17 +7,16 @@ import sqlite3 as db
 import random as rd
 import text
 import speech
-
+from chatterbot.response_selection import get_most_frequent_response
 
 ateambot = ChatBot(name='Sabot',
-                   read_only=True,
                    storage_adapter='chatterbot.storage.SQLStorageAdapter',
                    logic_adapters=[{'import_path': 'chatterbot.logic.BestMatch',
                                     'maximum_similarity_threshold': 0.90,
                                    'default_response': 'sorry was not able to generate a response for you'}],
                    databaseuri='sqlite3:///database.sqlite3',
+                   response_selection_method='get_most_frequent_response'
                    )
-
 trainer = ListTrainer(ateambot)
 
 
@@ -94,6 +93,7 @@ def program_start():
         exit(0)
     else:
         print('invalid selection, text has been automatically chosen for you')
+        text.text_func(ateambot)
 
 
 program_start()
