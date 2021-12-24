@@ -14,7 +14,7 @@ speech_engine.setProperty('rate', 145)
 r = sr.Recognizer()
 voices = speech_engine.getProperty('voices')
 speech_engine.setProperty('voice', voices[1].id)
-google_api_key = ''
+google_api_key = 'nil'
 name_of_bot = 'suibot'
 
 
