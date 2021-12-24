@@ -5,8 +5,7 @@ import urllib.request
 import urllib.error
 import pywintypes
 from chatterbot.conversation import Statement
-import matplotlib.image as img
-import matplotlib.pyplot as plt
+from PIL import Image
 
 
 speech_engine = pyttsx3.init()
@@ -121,9 +120,8 @@ def image_display(reply):
     list_of_images = ['gym', 'library', 'micheal andrews', 'solent shop', 'spark building', 'student hub', 'student kitchen']
     for name in list_of_images:
         if name in reply:
-            place = img.imread('/images/' + name)
-            plt.imshow(place)
-            plt.show()
+            image = Image.open(f'images/' + f"{name}" + '.jpg')
+            image.show()
 
 
 if __name__ == '__speech__':
