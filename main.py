@@ -17,6 +17,7 @@ ateambot = ChatBot(name='Sabot',
                    databaseuri='sqlite3:///database.sqlite3',
                    )
 trainer = ListTrainer(ateambot)
+trainer.show_training_progress = False
 
 
 def train_data():
