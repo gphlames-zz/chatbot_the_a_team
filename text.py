@@ -4,25 +4,15 @@ from PIL import Image as img
 name_of_bot = 'SUIBOT: '
 
 intents = ''
+
 def text_func(chatbot, trainer):
     name = input(name_of_bot + 'hello, what is your name?: ')
     print(name_of_bot + name + ' welcome to solent university interactive bot(type exit to stop and 1 to teach me anytime)')
+    global intents
     while True:
         intent = input(name + ':').lower()
         intention = None
         if intent == '1':
-            pass
-        else:
-            global intents
-            intents = ''
-            intents = intents.join(intent)
-            intention = chatbot.get_response(intent)
-            print(name_of_bot + intention.text)
-            image_display(intention)
-        if intent.__contains__('exit'):
-            print('thanks for stopping by')
-            break
-        elif intent == '1':
             print(name_of_bot + 'you can help with my learning process, reply with a yes if you wish to help')
             yes_answer = input(name + ':')
             if yes_checker(yes_answer):
@@ -40,18 +30,26 @@ def text_func(chatbot, trainer):
                     elif answer.__contains__('exit') or answer.__contains__('quit'):
                         break
                     elif answer.__contains__('no') or answer.__contains__('not really'):
-                        continue
+                        print('ok maybe next time')
+                        break
                     else:
                         break
             elif yes_answer.__contains__('no'):
-                print(name_of_bot + 'ok anything else')
+                break
             elif yes_answer.__contains__('exit'):
                 print(name_of_bot + 'Good bye')
+                break
             else:
                 continue
+        elif intent.__contains__('exit'):
+            print('thanks for stopping by')
+            break
         else:
-            continue
-
+            intents = ''
+            intents = intents.join(intent)
+            intention = chatbot.get_response(intent)
+            print(name_of_bot + intention.text)
+            image_display(intention)
 
 
 def image_display(reply):

@@ -14,7 +14,8 @@ r = sr.Recognizer()
 voices = speech_engine.getProperty('voices')
 speech_engine.setProperty('voice', voices[1].id)
 google_api_key = 'nil'
-name_of_bot = 'suibot'
+name_of_bot = 'aito'
+intention = ''
 
 
 def speech_function(chatbot, trainer):
@@ -33,22 +34,13 @@ def speech_function(chatbot, trainer):
                 if name == '':
                     pass
                 else:
-                    speaker(f'{name} Welcome to southampton solent university interactive bot')
+                    speaker(f'{name} Welcome to southampton solent university interactive bot, if you wish to'
+                            f'help me learn just say the phrase i want to help you learn if i give a wrong response')
                     while True:
                         try:
                             speaker('how can i help you?')
                             intent = listener(source)
-                            intention = chatbot.get_response(intent)
-                            speaker(intention)
-                            speaker('was that helpful?')
-                            response_text = listener(source)
-                            if yes_checker(response_text):
-                                image_display(intention)
-                                speaker('thank you for helping my learning process talk later')
-                            elif response_text.__contains__('exit') or response_text.__contains__(
-                                    'quit') or response_text.__contains__('stop'):
-                                break
-                            elif response_text.__contains__('no') or response_text.__contains__('not really'):
+                            if intent.__contains__('i want to help you learn'):
                                 speaker(
                                     'you can help with my learning process, please reply with a yes if you wish to help')
                                 willingness_text = listener(source)
@@ -73,8 +65,15 @@ def speech_function(chatbot, trainer):
                                             continue
                                         else:
                                             break
+                            elif intent.__contains__('exit') or intent.__contains__(
+                                    'quit') or intent.__contains__('stop'):
+                                break
                             else:
-                                continue
+                                intentions = chatbot.get_response(intent)
+                                global intention
+                                intention = ''.join(intentions.text)
+                                speaker(intentions)
+                                image_display(intentions.text)
                         except(speech_recognition.UnknownValueError, speech_recognition.RequestError):
                             speaker('there was an error with your query please try again')
                             continue
@@ -111,9 +110,14 @@ def internet_checker():
 
 
 def listener(source):
-    answer = r.listen(source)
-    answer_text = str(r.recognize_google(answer)).lower()
-    return answer_text
+    while True:
+        try:
+            answer = r.listen(source)
+            answer_text = str(r.recognize_google(answer)).lower()
+            print('right here')
+            return answer_text
+        except speech_recognition.UnknownValueError:
+            speaker('there was an error getting your question, please try again')
 
 
 def image_display(reply):
