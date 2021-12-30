@@ -53,7 +53,6 @@ def tag_checker(tag):
             database_connector.close()
             return True
         else:
-            print('tag not reading')
             database_connector.close()
     return False
 

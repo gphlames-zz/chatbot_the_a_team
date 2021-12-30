@@ -114,7 +114,6 @@ def listener(source):
         try:
             answer = r.listen(source)
             answer_text = str(r.recognize_google(answer)).lower()
-            print('right here')
             return answer_text
         except speech_recognition.UnknownValueError:
             speaker('there was an error getting your question, please try again')
