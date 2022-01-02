@@ -21,9 +21,6 @@ def text_func(chatbot, trainer):
                     answer_text = input(name + ':')
                     answer = input(name_of_bot + 'are you satisfied with your answer?:')
                     if yes_checker(answer):
-                        statement = Statement(answer_text)
-                        statement.in_response_to = intents
-                        chatbot.learn_response(statement, intents)
                         for _ in range(25):
                             trainer.train([intents, answer_text])
                         break

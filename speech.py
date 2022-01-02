@@ -1,9 +1,7 @@
-import speech_recognition
 import speech_recognition as sr
 import pyttsx3
 import urllib.request
 import urllib.error
-import pywintypes
 from chatterbot.conversation import Statement
 from PIL import Image
 
@@ -28,7 +26,7 @@ def speech_function(chatbot, trainer):
             if internet_checker():
                 try:
                     name = listener(source)
-                except (speech_recognition.UnknownValueError, speech_recognition.RequestError):
+                except (sr.UnknownValueError, sr.RequestError):
                     speaker('there was an error getting your name i will call you student')
                     speaker('i will call you student')
                 if name == '':
@@ -74,7 +72,7 @@ def speech_function(chatbot, trainer):
                                 intention = ''.join(intentions.text)
                                 speaker(intentions)
                                 image_display(intentions.text)
-                        except(speech_recognition.UnknownValueError, speech_recognition.RequestError):
+                        except(sr.UnknownValueError, sr.RequestError):
                             speaker('there was an error with your query please try again')
                             continue
                         speaker('anything else')
@@ -115,7 +113,7 @@ def listener(source):
             answer = r.listen(source)
             answer_text = str(r.recognize_google(answer)).lower()
             return answer_text
-        except speech_recognition.UnknownValueError:
+        except sr.UnknownValueError:
             speaker('there was an error getting your question, please try again')
 
 

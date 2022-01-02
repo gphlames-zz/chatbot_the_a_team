@@ -1,26 +1,26 @@
 {"intents": [
-        {"tag": "greeting",
+        {
          "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day"],
          "responses": ["Hello, how can i help you", "Good to see you again, how can i help you?", "Hi there, how can I help?"]
         },
-        {"tag": "goodbye",
+        {
          "patterns": ["Bye", "See you later", "Goodbye"],
          "responses": ["See you later i hope i was able to help", "thanks for visiting", "always a pleasure to help", "Have a nice day, always a pleasure to help", "Bye! Come back again soon."]
         },
-        {"tag": "thanks",
+        {
          "patterns": ["Thanks", "Thank you", "That's helpful"],
          "responses": ["Happy to help!", "Any time!", "My pleasure"]
         },
-        {"tag": "computing",
+        {
          "patterns": ["digital technologies ", "i am a student of applied artificial intelligence and data science",
            "cyber security", "student of computer engineering","computer systems","network engineering"],
          "responses": ["you are a student of the computing faculty and should visit the student hub for more information"]
         },
-        {"tag": "art",
+        {
          "patterns": ["i am an art student", "theater arts", "film maker" ],
          "responses": ["i have limited information to help you please visit the student hub"]
         },
-        {"tag": "Engineering",
+        {
          "patterns": ["i am an engineering student", "mechanical engineering", "civil engineering",
            "renewable energy engineering","super yacht design","power craft design","electronic engineering"],
          "responses": ["i have limited information to help you please visit the student hub"]
@@ -29,6 +29,15 @@
           "patterns": ["where can i locate the student hub"," where is the student hub",
             "which building is the student hub located?"],
           "responses": ["the student hub is in the micheal andrews building, enter from the front and walk straight down"]
+        },
+        {
+          "conversations": [
+            "who is the course leader of the masters in artificial intelligence and data science?",
+            "the course leader of the masters in artificial intelligence and data science is dr shakeel ahmad, would like to contact him?",
+            "yes",
+            "you can send him a mail at shakeel@notallowed.com"
+          ]
+
         }
    ]
 }
