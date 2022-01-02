@@ -36,7 +36,7 @@ def train_data():
 def program_start():
     train_data()
     speech.speaker('Welcome to southampton solent university interactive bot')
-    activity_string = '''select the following way you would prefer to communicate with me, say
+    activity_string = '''select the following way you would prefer to communicate with me,
        [1] for Text,
        [2] for Verbal communication,
        [0] to Exit,
