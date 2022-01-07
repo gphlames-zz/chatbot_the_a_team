@@ -7,7 +7,7 @@ import speech
 import speech_recognition as sr
 
 
-ateambot = ChatBot(name='Sabot',
+ateambot = ChatBot(name='simi',
                    storage_adapter='chatterbot.storage.SQLStorageAdapter',
                    logic_adapters=[{'import_path': 'chatterbot.logic.BestMatch',
                                     'maximum_similarity_threshold': 0.85,
@@ -16,6 +16,7 @@ ateambot = ChatBot(name='Sabot',
                    )
 trainer = ListTrainer(ateambot)
 trainer.show_training_progress = False
+name_of_bot = 'simi'
 
 
 def train_data():
@@ -35,7 +36,7 @@ def train_data():
 
 def program_start():
     train_data()
-    speech.speaker('Welcome to southampton solent university interactive bot')
+    speech.speaker('hello my name is' + name_of_bot + ',Welcome to southampton solent university interactive bot')
     activity_string = '''select the following way you would prefer to communicate with me,
        [1] for Text,
        [2] for Verbal communication,

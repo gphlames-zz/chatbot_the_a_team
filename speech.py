@@ -12,13 +12,11 @@ r = sr.Recognizer()
 voices = speech_engine.getProperty('voices')
 speech_engine.setProperty('voice', voices[1].id)
 google_api_key = 'nil'
-name_of_bot = 'aito'
 intention = ''
 
 
 def speech_function(chatbot, trainer):
     with sr.Microphone() as source:
-        speaker('my name is' + name_of_bot + 'and i will be speaking with you')
         speaker('adjusting for background noise please be quiet')
         r.adjust_for_ambient_noise(source, duration=1)
         speaker('What is your name?')
@@ -50,10 +48,6 @@ def speech_function(chatbot, trainer):
                                         speaker('are you satisfied with your answer?')
                                         answer = listener(source)
                                         if yes_checker(answer):
-                                            statement = Statement(answer_text)
-                                            statement.confidence = 1.0
-                                            statement.in_response_to = intent
-                                            chatbot.learn_response(statement, intent)
                                             for _ in range(25):
                                                 trainer.train([intent, answer_text])
                                             break
