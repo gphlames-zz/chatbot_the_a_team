@@ -11,7 +11,7 @@ ateambot = ChatBot(name='Sabot',
                    storage_adapter='chatterbot.storage.SQLStorageAdapter',
                    logic_adapters=[{'import_path': 'chatterbot.logic.BestMatch',
                                     'maximum_similarity_threshold': 0.85,
-                                   'default_response': 'sorry was not able to generate a response for you'}],
+                                   'default_response': 'sorry was not able to generate a response for you, please the student hub.'}],
                    databaseuri='sqlite3:///database.sqlite3',
                    )
 trainer = ListTrainer(ateambot)
